@@ -13,8 +13,8 @@ class MOM6InputParser(object):
     ]
 
     def __init__(self):
-        self.param_list = {}
-        self.commt_list = {}
+        self.param_dict = {}
+        self.commt_dict = {}
         self.current_header = None
         self.current_var = None
         self.current_value = []
@@ -53,9 +53,9 @@ class MOM6InputParser(object):
         self._save_current_param()
 
     def _initialise_header(self):
-        if self.current_header not in self.param_list:
-            self.param_list[self.current_header] = {}
-            self.commt_list[self.current_header] = {}
+        if self.current_header not in self.param_dict:
+            self.param_dict[self.current_header] = {}
+            self.commt_dict[self.current_header] = {}
 
     def _save_current_param(self):
         # save parameters, and associated values and comments
@@ -64,8 +64,8 @@ class MOM6InputParser(object):
             var_name = self.current_var
             value = "".join(self.current_value).strip()
             comment = "\n".join(self.current_comment).strip()
-            self.param_list[self.current_header][var_name] = value
-            self.commt_list[self.current_header][var_name] = comment
+            self.param_dict[self.current_header][var_name] = value
+            self.commt_dict[self.current_header][var_name] = comment
 
     def _start_new_header(self, header):
         self.current_header = header
@@ -102,10 +102,10 @@ class MOM6InputParser(object):
             f.write("! This file was written by the script xxx \n")
             f.write("! and records the non-default parameters used at run-time.\n")
             f.write("\n")
-            for header, variables in self.param_list.items():
+            for header, variables in self.param_dict.items():
                 f.write(f"! === {header} ===\n")
                 for var, value in variables.items():
-                    comment = self.commt_list[header].get(var, "")
+                    comment = self.commt_dict[header].get(var, "")
                     if comment:
                         comment_lines = comment.split("\n")
                         param_str = f"{var} = {value}"
