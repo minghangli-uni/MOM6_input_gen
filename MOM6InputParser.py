@@ -100,7 +100,9 @@ class MOM6InputParser(object):
         """
         with open(MOM_input_write_path, "w") as f:
             f.write("! This file was written by the script xxx \n")
-            f.write("! and records the non-default parameters used at run-time.\n")
+            f.write(
+                "! and records the non-default parameters used at run-time.\n"
+            )
             f.write("\n")
             for header, variables in self.param_dict.items():
                 f.write(f"! === {header} ===\n")
@@ -113,7 +115,9 @@ class MOM6InputParser(object):
                             f"{param_str:<{total_width}} ! {comment_lines[0].strip()}\n"
                         )
                         for comment_line in comment_lines[1:]:
-                            f.write(f"{'':<{total_width}} {comment_line.strip()}\n")
+                            f.write(
+                                f"{'':<{total_width}} {comment_line.strip()}\n"
+                            )
                     elif var in self.block_list:
                         f.write(f"{var}\n")
                     else:
