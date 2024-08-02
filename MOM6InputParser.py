@@ -15,7 +15,6 @@ class MOM6InputParser(object):
     def __init__(self):
         self.param_dict = {}
         self.commt_dict = {}
-        self.current_header = None
         self.current_var = None
         self.current_value = []
         self.current_comment = []
@@ -29,12 +28,9 @@ class MOM6InputParser(object):
 
     def parse_lines(self):
         for line in self.lines:
-            if header_match := self.header_pattern.match(line):
+            if self.header_pattern.match(line):
                 self._save_current_param()
-                self._start_new_header(
-                    header_match.group(1).strip()
-                )  # start new header and initialise params
-                self._initialise_header()  # keep the header if no params exists
+                self._start_new_header()
                 continue
 
             if line.strip().startswith("!"):
@@ -52,23 +48,16 @@ class MOM6InputParser(object):
         # last parameter
         self._save_current_param()
 
-    def _initialise_header(self):
-        if self.current_header not in self.param_dict:
-            self.param_dict[self.current_header] = {}
-            self.commt_dict[self.current_header] = {}
-
     def _save_current_param(self):
         # save parameters, and associated values and comments
         if self.current_var:
-            self._initialise_header()
             var_name = self.current_var
             value = "".join(self.current_value).strip()
             comment = "\n".join(self.current_comment).strip()
-            self.param_dict[self.current_header][var_name] = value
-            self.commt_dict[self.current_header][var_name] = comment
+            self.param_dict[var_name] = value
+            self.commt_dict[var_name] = comment
 
-    def _start_new_header(self, header):
-        self.current_header = header
+    def _start_new_header(self):
         self.current_var = None
         self.current_value = []
         self.current_comment = []
@@ -104,25 +93,23 @@ class MOM6InputParser(object):
                 "! and records the non-default parameters used at run-time.\n"
             )
             f.write("\n")
-            for header, variables in self.param_dict.items():
-                f.write(f"! === {header} ===\n")
-                for var, value in variables.items():
-                    comment = self.commt_dict[header].get(var, "")
-                    if comment:
-                        comment_lines = comment.split("\n")
-                        param_str = f"{var} = {value}"
+            for var, value in self.param_dict.items():
+                comment = self.commt_dict.get(var, "")
+                if comment:
+                    comment_lines = comment.split("\n")
+                    param_str = f"{var} = {value}"
+                    f.write(
+                        f"{param_str:<{total_width}} ! {comment_lines[0].strip()}\n"
+                    )
+                    for comment_line in comment_lines[1:]:
                         f.write(
-                            f"{param_str:<{total_width}} ! {comment_lines[0].strip()}\n"
+                            f"{'':<{total_width}} {comment_line.strip()}\n"
                         )
-                        for comment_line in comment_lines[1:]:
-                            f.write(
-                                f"{'':<{total_width}} {comment_line.strip()}\n"
-                            )
-                    elif var in self.block_list:
-                        f.write(f"{var}\n")
-                    else:
-                        f.write(f"{var} = {value}\n")
-                f.write("\n")
+                elif var in self.block_list:
+                    f.write(f"{var}\n")
+                else:
+                    f.write(f"{var} = {value}\n")
+            f.write("\n")
 
 
 if __name__ == "__main__":

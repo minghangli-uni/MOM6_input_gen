@@ -1,7 +1,6 @@
 ! This file was written by the script xxx 
 ! and records the non-default parameters used at run-time.
 
-! === module MOM ===
 SPLIT = True                     ! [Boolean] default = True
                                  ! Use the split time stepping if true.
 CALC_RHO_FOR_SEA_LEVEL = False   ! [Boolean] default = False
@@ -181,8 +180,6 @@ ENSEMBLE_OCEAN = False           ! [Boolean] default = False
                                  ! statistical evaluation and/or data assimilation.
 HOMOGENIZE_FORCINGS = False      ! [Boolean] default = False
                                  ! If True, homogenize the forces and fluxes.
-
-! === module MOM_domains ===
 REENTRANT_X = True               ! [Boolean] default = True
                                  ! If true, the domain is zonally reentrant.
 REENTRANT_Y = False              ! [Boolean] default = False
@@ -200,18 +197,10 @@ NIHALO = 4                       ! default = 4
 NJHALO = 4                       ! default = 4
                                  ! The number of halo points on each side in the y-direction.  How this is set
                                  ! varies with the calling component and static or dynamic memory configuration.
-
-! === module MOM_hor_index ===
-
-! === module MOM_grid ===
 REFERENCE_HEIGHT = 0.0           ! [m] default = 0.0
                                  ! A reference value for geometric height fields, such as bathyT.
-
-! === module MOM_fixed_initialization ===
 INPUTDIR = "./input/"            ! default = "."
                                  ! The directory in which input files are found.
-
-! === module MOM_grid_init ===
 GRID_CONFIG = "mosaic"           ! ! A character string that determines the method for defining the horizontal
                                  ! grid.  Current options are:
                                  !     mosaic - read the grid from a mosaic (supergrid)
@@ -269,8 +258,6 @@ MASKING_DEPTH = -9999.0          ! [m] default = -9999.0
                                  ! zeroed out. MASKING_DEPTH is ignored if it has the special default value.
 MAXIMUM_DEPTH = 6000.0           ! [m]
                                  ! The maximum depth of the ocean.
-
-! === module MOM_open_boundary ===
 OBC_NUMBER_OF_SEGMENTS = 0       ! default = 0
                                  ! The number of open boundary segments.
 CHANNEL_CONFIG = "global_1deg"   ! default = "none"
@@ -298,8 +285,6 @@ GRID_ROTATION_ANGLE_BUGS = False ! [Boolean] default = False
                                  ! If true, use an older algorithm to calculate the sine and cosines needed
                                  ! rotate between grid-oriented directions and true north and east.  Differences
                                  ! arise at the tripolar fold.
-
-! === module MOM_verticalGrid ===
 G_EARTH = 9.8                    ! [m s-2] default = 9.8
                                  ! The gravitational acceleration of the Earth.
 RHO_0 = 1035.0                   ! [kg m-3] default = 1035.0
@@ -314,10 +299,6 @@ H_TO_M = 1.0                     ! [m H-1] default = 1.0
                                  ! A constant that translates the model's internal units of thickness into m.
 NK = 50                          ! [nondim]
                                  ! The number of model layers.
-
-! === module MOM_tracer_registry ===
-
-! === module MOM_EOS ===
 EQN_OF_STATE = "WRIGHT"          ! default = "WRIGHT"
                                  ! EQN_OF_STATE determines which ocean equation of state should be used.
                                  ! Currently, the valid choices are "LINEAR", "UNESCO", "WRIGHT", "NEMO" and
@@ -337,8 +318,6 @@ DTFREEZE_DS = -0.054             ! [deg C PSU-1] default = -0.054
 DTFREEZE_DP = -7.75E-08          ! [deg C Pa-1] default = 0.0
                                  ! When TFREEZE_FORM=LINEAR, this is the derivative of the freezing potential
                                  ! temperature with pressure.
-
-! === module MOM_restart ===
 PARALLEL_RESTARTFILES = False    ! [Boolean] default = False
                                  ! If true, the IO layout is used to group processors that write to the same
                                  ! restart file or each processor writes its own (numbered) restart file. If
@@ -352,8 +331,6 @@ RESTART_CHECKSUMS_REQUIRED = True ! [Boolean] default = True
                                  ! may want to avoid this comparison if for example the restarts are made from a
                                  ! run with a different mask_table than the current run, in which case the
                                  ! checksums will not match and cause crash.
-
-! === module MOM_tracer_flow_control ===
 USE_USER_TRACER_EXAMPLE = False  ! [Boolean] default = False
                                  ! If true, use the USER_tracer_example tracer package.
 USE_DOME_TRACER = False          ! [Boolean] default = False
@@ -385,8 +362,6 @@ USE_DYED_OBC_TRACER = False      ! [Boolean] default = False
                                  ! If true, use the dyed_obc_tracer tracer package.
 USE_NW2_TRACERS = False          ! [Boolean] default = False
                                  ! If true, use the NeverWorld2 tracers.
-
-! === module ideal_age_example ===
 DO_IDEAL_AGE = True              ! [Boolean] default = True
                                  ! If true, use an ideal age tracer that is set to 0 age in the boundary layer
                                  ! and ages at unit rate in the interior.
@@ -413,8 +388,6 @@ TRACERS_MAY_REINIT = False       ! [Boolean] default = False
                                  ! If true, tracers may go through the initialization code if they are not found
                                  ! in the restart files.  Otherwise it is a fatal error if the tracers are not
                                  ! found in the restart files of a restarted run.
-
-! === module MOM_coord_initialization ===
 COORD_CONFIG = "none"            ! default = "none"
                                  ! This specifies how layers are to be defined:
                                  !     ALE or none - used to avoid defining layers in ALE mode
@@ -540,8 +513,6 @@ REMAP_VEL_MASK_BBL_THICK = -0.001 ! [m] default = -0.001
                                  ! A thickness of a bottom boundary layer below which velocities in thin layers
                                  ! are zeroed out after remapping, following practice with Hybgen remapping, or a
                                  ! negative value to avoid such filtering altogether.
-
-! === module MOM_state_initialization ===
 FATAL_INCONSISTENT_RESTART_TIME = False ! [Boolean] default = False
                                  ! If true and a time_in value is provided to MOM_initialize_state, verify that
                                  ! the time read from a restart file is the same as time_in, and issue a fatal
@@ -551,8 +522,6 @@ ODA_INCUPD = False               ! [Boolean] default = False
 SPONGE = False                   ! [Boolean] default = False
                                  ! If true, sponges may be applied anywhere in the domain. The exact location and
                                  ! properties of those sponges are specified via SPONGE_CONFIG.
-
-! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 1              ! default = 1
                                  ! The number of diagnostic vertical coordinates to use. For each coordinate, an
                                  ! entry in DIAG_COORDS must be provided.
@@ -584,8 +553,6 @@ DIAG_COORD_DEF_Z = "FILE:ocean_vgrid.nc,interfaces=zeta" ! default = "WOA09"
                                  !                the filename and two variable names, separated
                                  !                by a comma or space, for sigma-2 and dz. e.g.
                                  !                HYBRID:vgrid.nc,sigma2,dz
-
-! === module MOM_MEKE ===
 USE_MEKE = True                  ! [Boolean] default = False
                                  ! If true, turns on the MEKE scheme which calculates a sub-grid mesoscale eddy
                                  ! kinetic energy budget.
@@ -731,8 +698,6 @@ CDRAG = 0.003                    ! [nondim] default = 0.003
 MEKE_CDRAG = 0.003               ! [nondim] default = 0.003
                                  ! Drag coefficient relating the magnitude of the velocity field to the bottom
                                  ! stress in MEKE.
-
-! === module MOM_lateral_mixing_coeffs ===
 USE_VARIABLE_MIXING = True       ! [Boolean] default = False
                                  ! If true, the variable mixing code will be called.  This allows diagnostics to
                                  ! be created even if the scheme is not used.  If KHTR_SLOPE_CFF>0 or
@@ -829,8 +794,6 @@ INTERNAL_WAVE_SPEED_BETTER_EST = True ! [Boolean] default = True
                                  ! starting point for iterations.
 USE_QG_LEITH_GM = False          ! [Boolean] default = False
                                  ! If true, use the QG Leith viscosity as the GM coefficient.
-
-! === module MOM_set_visc ===
 SET_VISC_2018_ANSWERS = False    ! [Boolean] default = False
                                  ! If true, use the order of arithmetic and expressions that recover the answers
                                  ! from the end of 2018.  Otherwise, use updated and more robust forms of the
@@ -910,8 +873,6 @@ CHANNEL_DRAG_MAX_BBL_THICK = -1.0 ! [m] default = -1.0
                                  ! exerted, or a negative value for no fixed limit, instead basing the BBL
                                  ! thickness on the bottom stress, rotation and stratification.  The default is
                                  ! proportional to HBBL if USE_JACKSON_PARAM or DRAG_AS_BODY_FORCE is true.
-
-! === module MOM_thickness_diffuse ===
 KHTH = 0.0                       ! [m2 s-1] default = 0.0
                                  ! The background horizontal thickness diffusivity.
 KHTH_MIN = 0.0                   ! [m2 s-1] default = 0.0
@@ -981,8 +942,6 @@ STANLEY_COEFF = -1.0             ! [not defined] default = -1.0
 STANLEY_A = 1.0                  ! [not defined] default = 1.0
                                  ! Coefficient a which scales chi in stochastic perturbation of the SGS T
                                  ! variance.
-
-! === module MOM_porous_barriers ===
 PORBAR_ANSWER_DATE = 99991231    ! default = 99991231
                                  ! The vintage of the porous barrier weight function calculations.  Values below
                                  ! 20220806 recover the old answers in which the layer averaged weights are not
@@ -998,8 +957,6 @@ PORBAR_ETA_INTERP = "MAX"        ! default = "MAX"
                                  !    MIN - minimum of the adjacent cells
                                  !    ARITHMETIC - arithmetic mean of the adjacent cells
                                  !    HARMONIC - harmonic mean of the adjacent cells
-
-! === module MOM_dynamics_split_RK2 ===
 TIDES = True                     ! [Boolean] default = False
                                  ! If true, apply tidal momentum forcing.
 BE = 0.6                         ! [nondim] default = 0.6
@@ -1022,15 +979,11 @@ BT_USE_LAYER_FLUXES = True       ! [Boolean] default = True
 STORE_CORIOLIS_ACCEL = True      ! [Boolean] default = True
                                  ! If true, calculate the Coriolis accelerations at the end of each timestep for
                                  ! use in the predictor step of the next split RK2 timestep.
-
-! === module MOM_continuity ===
 CONTINUITY_SCHEME = "PPM"        ! default = "PPM"
                                  ! CONTINUITY_SCHEME selects the discretization for the continuity solver. The
                                  ! only valid value currently is:
                                  !    PPM - use a positive-definite (or monotonic)
                                  !          piecewise parabolic reconstruction solver.
-
-! === module MOM_continuity_PPM ===
 MONOTONIC_CONTINUITY = False     ! [Boolean] default = False
                                  ! If true, CONTINUITY_PPM uses the Colella and Woodward monotonic limiter.  The
                                  ! default (false) is to use a simple positive definite limiter.
@@ -1070,8 +1023,6 @@ CONT_PPM_USE_VISC_REM_MAX = True ! [Boolean] default = True
 CONT_PPM_MARGINAL_FACE_AREAS = True ! [Boolean] default = True
                                  ! If true, use the marginal face areas from the continuity solver for use as the
                                  ! weights in the barotropic solver. Otherwise use the transport averaged areas.
-
-! === module MOM_CoriolisAdv ===
 NOSLIP = False                   ! [Boolean] default = False
                                  ! If true, no slip boundary conditions are used; otherwise free slip boundary
                                  ! conditions are assumed. The implementation of the free slip BCs on a C-grid is
@@ -1103,8 +1054,6 @@ PV_ADV_SCHEME = "PV_ADV_CENTERED" ! default = "PV_ADV_CENTERED"
                                  ! PV_ADV_SCHEME selects the discretization for PV advection. Valid values are:
                                  !    PV_ADV_CENTERED - centered (aka Sadourny, 75)
                                  !    PV_ADV_UPWIND1  - upwind, first order
-
-! === module MOM_tidal_forcing ===
 TIDE_M2 = True                   ! [Boolean] default = False
                                  ! If true, apply tidal momentum forcing at the M2 frequency. This is only used
                                  ! if TIDES is true.
@@ -1166,15 +1115,11 @@ TIDE_M2_AMP = 0.242334           ! [m] default = 0.242334
 TIDE_M2_PHASE_T0 = 0.0           ! [radians] default = 0.0
                                  ! Phase of the M2 tidal constituent at time 0. This is only used if TIDES and
                                  ! TIDE_M2 are true.
-
-! === module MOM_PressureForce ===
 ANALYTIC_FV_PGF = True           ! [Boolean] default = True
                                  ! If true the pressure gradient forces are calculated with a finite volume form
                                  ! that analytically integrates the equations of state in pressure to avoid any
                                  ! possibility of numerical thermobaric instability, as described in Adcroft et
                                  ! al., O. Mod. (2008).
-
-! === module MOM_PressureForce_FV ===
 MASS_WEIGHT_IN_PRESSURE_GRADIENT = True ! [Boolean] default = False
                                  ! If true, use mass weighting when interpolating T/S for integrals near the
                                  ! bathymetry in FV pressure gradient calculations.
@@ -1197,8 +1142,6 @@ BOUNDARY_EXTRAPOLATION_PRESSURE = True ! [Boolean] default = True
                                  ! polynomial is used as is used for the interior cells.
 USE_STANLEY_PGF = False          ! [Boolean] default = False
                                  ! If true, turn on Stanley SGS T variance parameterization in PGF code.
-
-! === module MOM_hor_visc ===
 HOR_VISC_2018_ANSWERS = False    ! [Boolean] default = False
                                  ! If true, use the order of arithmetic and expressions that recover the answers
                                  ! from the end of 2018.  Otherwise, use updated and more robust forms of the
@@ -1284,8 +1227,6 @@ HORVISC_BOUND_COEF = 0.8         ! [nondim] default = 0.8
 USE_KH_BG_2D = False             ! [Boolean] default = False
                                  ! If true, read a file containing 2-d background harmonic viscosities. The final
                                  ! viscosity is the maximum of the other terms and this background value.
-
-! === module MOM_vert_friction ===
 VERT_FRICTION_2018_ANSWERS = False ! [Boolean] default = False
                                  ! If true, use the order of arithmetic and expressions that recover the answers
                                  ! from the end of 2018.  Otherwise, use expressions that do not use an arbitrary
@@ -1351,8 +1292,6 @@ VEL_UNDERFLOW = 0.0              ! [m s-1] default = 0.0
                                  ! A negligibly small velocity magnitude below which velocity components are set
                                  ! to 0.  A reasonable value might be 1e-30 m/s, which is less than an Angstrom
                                  ! divided by the age of the universe.
-
-! === module MOM_barotropic ===
 USE_BT_CONT_TYPE = True          ! [Boolean] default = True
                                  ! If true, use a structure with elements that describe effective face areas from
                                  ! the summed continuity solver as a function the barotropic flow in coupling
@@ -1468,8 +1407,6 @@ DTBT = -0.95                     ! [s or nondim] default = -0.98
 BT_USE_OLD_CORIOLIS_BRACKET_BUG = False ! [Boolean] default = False
                                  ! If True, use an order of operations that is not bitwise rotationally symmetric
                                  ! in the meridional Coriolis term of the barotropic solver.
-
-! === module MOM_mixed_layer_restrat ===
 MIXEDLAYER_RESTRAT = True        ! [Boolean] default = False
                                  ! If true, a density-gradient dependent re-stratifying flow is imposed in the
                                  ! mixed layer. Can be used in ALE mode without restriction but in layer mode can
@@ -1514,16 +1451,12 @@ MLE_TAIL_DH = 0.0                ! [nondim] default = 0.0
 MLE_MLD_STRETCH = 1.0            ! [nondim] default = 1.0
                                  ! A scaling coefficient for stretching/shrinking the MLD used in the MLE scheme.
                                  ! This simply multiplies MLD wherever used.
-
-! === module MOM_diagnostics ===
 DIAG_EBT_MONO_N2_COLUMN_FRACTION = 0.0 ! [nondim] default = 0.0
                                  ! The lower fraction of water column over which N2 is limited as monotonic for
                                  ! the purposes of calculating the equivalent barotropic wave speed.
 DIAG_EBT_MONO_N2_DEPTH = -1.0    ! [m] default = -1.0
                                  ! The depth below which N2 is limited as monotonic for the purposes of
                                  ! calculating the equivalent barotropic wave speed.
-
-! === module MOM_diabatic_driver ===
 USE_LEGACY_DIABATIC_DRIVER = False ! [Boolean] default = True
                                  ! If true, use a legacy version of the diabatic subroutine. This is temporary
                                  ! and is needed to avoid change in answers.
@@ -1580,8 +1513,6 @@ DIAG_MLD_DENSITY_DIFF = 0.1      ! [kg/m3] default = 0.1
 DIAG_DEPTH_SUBML_N2 = 50.0       ! [m] default = 50.0
                                  ! The distance over which to calculate a diagnostic of the stratification at the
                                  ! base of the mixed layer.
-
-! === module MOM_CVMix_KPP ===
 USE_KPP = True                   ! [Boolean] default = False
                                  ! If true, turns on the [CVMix] KPP scheme of Large et al., 1994, to calculate
                                  ! diffusivities and non-local transport in the OBL.
@@ -1680,8 +1611,6 @@ STOKES_MIXING = False            ! default = False
 USE_KPP_LT_VT2 = False           ! default = False
                                  ! Flag for Langmuir turbulence enhancement of Vt2in Bulk Richardson Number.
 %KPP
-
-! === module MOM_CVMix_conv ===
 USE_CVMix_CONVECTION = True      ! [Boolean] default = False
                                  ! If true, turns on the enhanced mixing due to convection via CVMix. This scheme
                                  ! increases diapycnal diffs./viscs. at statically unstable interfaces. Relevant
@@ -1697,8 +1626,6 @@ BV_SQR_CONV = 0.0                ! [1/s^2] default = 0.0
                                  ! Threshold for squared buoyancy frequency needed to trigger Brunt-Vaisala
                                  ! parameterization.
 %CVMix_CONVECTION
-
-! === module MOM_set_diffusivity ===
 FLUX_RI_MAX = 0.2                ! [nondim] default = 0.2
                                  ! The flux Richardson number where the stratification is large enough that N2 >
                                  ! omega2.  The full expression for the Flux Richardson number is usually
@@ -1713,8 +1640,6 @@ SET_DIFF_ANSWER_DATE = 99991231  ! default = 99991231
                                  ! while higher values use updated and more robust forms of the same expressions.
                                  ! If both SET_DIFF_2018_ANSWERS and SET_DIFF_ANSWER_DATE are specified, the
                                  ! latter takes precedence.
-
-! === module MOM_tidal_mixing ===
 USE_CVMix_TIDAL = False          ! [Boolean] default = False
                                  ! If true, turns on tidal mixing via CVMix
 INT_TIDE_DISSIPATION = False     ! [Boolean] default = False
@@ -1743,8 +1668,6 @@ LOTW_BBL_USE_OMEGA = True        ! [Boolean] default = True
                                  ! Otherwise, N is N.
 VON_KARMAN_BBL = 0.41            ! [nondim] default = 0.41
                                  ! The value the von Karman constant as used in calculating the BBL diffusivity.
-
-! === module MOM_bkgnd_mixing ===
 KD = 2.0E-05                     ! [m2 s-1] default = 0.0
                                  ! The background diapycnal diffusivity of density in the interior. Zero or the
                                  ! molecular value, ~1e-7 m2 s-1, may be used.
@@ -1797,16 +1720,12 @@ DISSIPATION_KD_MIN = 0.0         ! [m2 s-1] default = 0.0
 DOUBLE_DIFFUSION = False         ! [Boolean] default = False
                                  ! If true, increase diffusivites for temperature or salinity based on the
                                  ! double-diffusive parameterization described in Large et al. (1994).
-
-! === module MOM_kappa_shear ===
 USE_JACKSON_PARAM = False        ! [Boolean] default = False
                                  ! If true, use the Jackson-Hallberg-Legg (JPO 2008) shear mixing
                                  ! parameterization.
 TKE_BACKGROUND = 0.0             ! [m2 s-2] default = 0.0
                                  ! A background level of TKE used in the first iteration of the kappa equation.
                                  ! TKE_BACKGROUND could be 0.
-
-! === module MOM_CVMix_shear ===
 USE_LMD94 = True                 ! [Boolean] default = False
                                  ! If true, use the Large-McWilliams-Doney (JGR 1994) shear mixing
                                  ! parameterization.
@@ -1824,8 +1743,6 @@ KPP_EXP = 3.0                    ! [nondim] default = 3.0
 N_SMOOTH_RI = 1                  ! default = 0
                                  ! If > 0, vertically smooth the Richardson number by applying a 1-2-1 filter
                                  ! N_SMOOTH_RI times.
-
-! === module MOM_CVMix_ddiff ===
 USE_CVMIX_DDIFF = True           ! [Boolean] default = False
                                  ! If true, turns on double diffusive processes via CVMix. Note that double
                                  ! diffusive processes on viscosity are ignored in CVMix, see
@@ -1852,8 +1769,6 @@ DIFF_CONV_TYPE = "MC76"          ! default = "MC76"
                                  ! type of diffusive convection to use. Options are Marmorino
                                  ! and Caldwell 1976 (MC76) and Kelley 1988, 1990 (K90).
 %CVMIX_DDIFF
-
-! === module MOM_diabatic_aux ===
 RECLAIM_FRAZIL = True            ! [Boolean] default = True
                                  ! If true, try to use any frazil heat deficit to cool any overlying layers down
                                  ! to the freezing point, thereby avoiding the creation of thin ice when the SST
@@ -1871,13 +1786,9 @@ USE_CALVING_HEAT_CONTENT = False ! [Boolean] default = False
 VAR_PEN_SW = False               ! [Boolean] default = False
                                  ! If true, use one of the CHL_A schemes specified by OPACITY_SCHEME to determine
                                  ! the e-folding depth of incoming short wave radiation.
-
-! === module MOM_regularize_layers ===
 REGULARIZE_SURFACE_LAYERS = False ! [Boolean] default = False
                                  ! If defined, vertically restructure the near-surface layers when they have too
                                  ! much lateral variations to allow for sensible lateral barotropic transports.
-
-! === module MOM_opacity ===
 EXP_OPACITY_SCHEME = "SINGLE_EXP" ! default = "SINGLE_EXP"
                                  ! This character string specifies which exponential opacity scheme to utilize.
                                  ! Currently valid options include:
@@ -1911,15 +1822,11 @@ PEN_SW_ABSORB_MINTHICK = 1.0     ! [m] default = 1.0
 OPACITY_LAND_VALUE = 10.0        ! [m-1] default = 10.0
                                  ! The value to use for opacity over land. The default is 10 m-1 - a value for
                                  ! muddy water.
-
-! === module MOM_tracer_advect ===
 TRACER_ADVECTION_SCHEME = "PPM:H3" ! default = "PLM"
                                  ! The horizontal transport scheme for tracers:
                                  !   PLM    - Piecewise Linear Method
                                  !   PPM:H3 - Piecewise Parabolic Method (Huyhn 3rd order)
                                  !   PPM    - Piecewise Parabolic Method (Colella-Woodward)
-
-! === module MOM_tracer_hor_diff ===
 KHTR = 0.0                       ! [m2 s-1] default = 0.0
                                  ! The background along-isopycnal tracer diffusivity.
 KHTR_MIN = 50.0                  ! [m2 s-1] default = 0.0
@@ -1948,8 +1855,6 @@ RECALC_NEUTRAL_SURF = False      ! [Boolean] default = False
                                  ! If true, then recalculate the neutral surfaces if the
                                  ! diffusive CFL is exceeded. If false, assume that the
                                  ! positions of the surfaces do not change
-
-! === module MOM_neutral_diffusion ===
 USE_NEUTRAL_DIFFUSION = True     ! [Boolean] default = False
                                  ! If true, enables the neutral diffusion module.
 NDIFF_CONTINUOUS = True          ! [Boolean] default = True
@@ -1967,8 +1872,6 @@ NDIFF_USE_UNMASKED_TRANSPORT_BUG = False ! [Boolean] default = False
                                  ! If true, use an older form for the accumulation of neutral-diffusion
                                  ! transports that were unmasked, as used prior to Jan 2018. This is not
                                  ! recommended.
-
-! === module MOM_hor_bnd_diffusion ===
 USE_HORIZONTAL_BOUNDARY_DIFFUSION = True ! [Boolean] default = False
                                  ! If true, enables the horizonal boundary tracer's diffusion module.
 HBD_LINEAR_TRANSITION = True     ! [Boolean] default = False
@@ -1997,8 +1900,6 @@ HBD_DEBUG = False                ! [Boolean] default = False
 OBSOLETE_DIAGNOSTIC_IS_FATAL = True ! [Boolean] default = True
                                  ! If an obsolete diagnostic variable appears in the diag_table, cause a FATAL
                                  ! error rather than issue a WARNING.
-
-! === module MOM_sum_output ===
 CALCULATE_APE = True             ! [Boolean] default = True
                                  ! If true, calculate the available potential energy of the interfaces.  Setting
                                  ! this to false reduces the memory footprint of high-PE-count models
@@ -2032,8 +1933,6 @@ ENERGYSAVEDAYS_GEOMETRIC = 0.0   ! [days] default = 0.0
                                  ! The starting interval in units of TIMEUNIT for the first call to save the
                                  ! energies of the run and other globally summed diagnostics. The interval
                                  ! increases by a factor of 2. after each call to write_energy.
-
-! === module ocean_stochastics_init ===
 DO_SPPT = False                  ! [Boolean] default = False
                                  ! If true, then stochastically perturb the thermodynamic tendemcies of T,S, amd
                                  ! h.  Amplitude and correlations are controlled by the nam_stoch namelist in the
@@ -2042,8 +1941,6 @@ PERT_EPBL = False                ! [Boolean] default = False
                                  ! If true, then stochastically perturb the kinetic energy production and
                                  ! dissipation terms.  Amplitude and correlations are controlled by the nam_stoch
                                  ! namelist in the UFS model only.
-
-! === module ocean_model_init ===
 SINGLE_STEPPING_CALL = True      ! [Boolean] default = True
                                  ! If true, advance the state of MOM with a single step including both dynamics
                                  ! and thermodynamics.  If false, the two phases are advanced with separate
@@ -2072,8 +1969,6 @@ ICEBERGS_APPLY_RIGID_BOUNDARY = False ! [Boolean] default = False
                                  ! If true, allows icebergs to change boundary condition felt by ocean
 USE_WAVES = False                ! [Boolean] default = False
                                  ! If true, enables surface wave modules.
-
-! === module MOM_surface_forcing_nuopc ===
 LATENT_HEAT_FUSION = 3.337E+05   ! [J/kg] default = 3.34E+05
                                  ! The latent heat of fusion.
 LATENT_HEAT_VAPORIZATION = 2.501E+06 ! [J/kg] default = 2.5E+06
@@ -2162,8 +2057,6 @@ ALLOW_FLUX_ADJUSTMENTS = False   ! [Boolean] default = False
 LIQUID_RUNOFF_FROM_DATA = False  ! [Boolean] default = False
                                  ! If true, allows liquid river runoff to be specified via the data_table using
                                  ! the component name 'OCN'.
-
-! === module MOM_file_parser ===
 SEND_LOG_TO_STDOUT = False       ! [Boolean] default = False
                                  ! If true, all log messages are also sent to stdout.
 DOCUMENT_FILE = "MOM_parameter_doc" ! default = "MOM_parameter_doc"
